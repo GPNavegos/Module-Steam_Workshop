@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<workshop_settings>
+  <workshop_id>529180</workshop_id>
+  <download_method>steamcmd</download_method>
+  <anonymous_login>0</anonymous_login>
+  <mods_path>DNL/Content/Mods</mods_path>
+  <mods>
+  </mods>
+  <config>
+    <regex>ActiveMods=(([0-9]+,?)*)</regex>
+    <mods_backreference_index>1</mods_backreference_index>
+    <variable>ActiveMods=</variable>
+    <place_after>[ServerSettings]\n</place_after>
+    <mod_string>%workshop_mod_id%</mod_string>
+    <string_separator>,</string_separator>
+    <filepath>DNL/Saved/Config/WindowsServer/GameUserSettings.ini</filepath>
+  </config>
+  <post_install>printf "\nMoving files"&#xD;
+cp -Rf %mods_full_path%/steamapps/workshop/content/529180/%workshop_mod_id% %mods_full_path%/%workshop_mod_id%&#xD;
+printf "\nCleaning up"&#xD;
+rm -Rf %mods_full_path%/steamapps/workshop/content/529180/%workshop_mod_id%&#xD;
+printf "\nDone!"</post_install>
+  <uninstall>printf "\nUninstalling...\n"&#xD;
+rm -vRf %mods_full_path%/%mod_string%&#xD;
+printf "\nDone!"&#xD;
+</uninstall>
+</workshop_settings>
